@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  nn_tf:
+    build: .
+    ports:
+      - "8080:8080"
+    command: jupyter-lab --allow-root --no-browser --NotebookApp.token='' --NotebookApp.password='' --ip='0.0.0.0' --port=8080
+    volumes: 
+      - /root/work: $HOME/projects
+      - /root/dataset: /mnt/md0/dicom
+  redis:
+    image: "nn_tf:latest"
